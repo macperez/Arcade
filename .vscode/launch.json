@@ -1,0 +1,17 @@
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Run ArcadeEngine (Debug)", 
+                "type": "cppvsdbg", // only for windows
+                //"type": "cppdbg", // Linux
+                //"MIMode": "gdb",  // Linux, delete if you are in windows
+                "request": "launch", 
+                "program": "${workspaceFolder}/build/Debug/ArcadeEngine.exe",  // this path in windows
+                //"program": "${workspaceFolder}/build/Bounce.exe",  // this path in linux --> omit /Debug/ part of path and find the executable
+                "cwd": "${workspaceFolder}",
+                "console": "integratedTerminal",  // uncommment only for windows
+                "preLaunchTask": "${defaultBuildTask}"
+            }
+        ]
+    }

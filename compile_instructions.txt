@@ -1,0 +1,1 @@
+cmake -B Build -D CMAKE_BUILD_TYPE=Debug

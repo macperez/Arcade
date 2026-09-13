@@ -13,7 +13,7 @@ EngineConfig :: EngineConfig ()
     //windowSize.x  = json["windowSize"][0];
     //windowSize.y  = json["windowSize"][1];
     windowSize = {json["windowSize"][0], json["windowSize"][1]} ;
-
+    disableSfmlLogs = json["disableSfmlLogs"];
 }
 
 

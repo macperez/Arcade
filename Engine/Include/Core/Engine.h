@@ -26,5 +26,8 @@ class Engine
 
         
         void EventWindowClose();
+        void EventWindowResized(sf::Vector2u size) ;
+        void EventWindowFocusGained();
+        void EventWindowFocusLost();
         
 };

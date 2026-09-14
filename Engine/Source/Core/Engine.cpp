@@ -14,7 +14,8 @@ Engine::Engine() :
     }
 
     LOG_INFO("Window created");
-
+    LOG_INFO("Random int: {}", context_.random.Int(1, 10));
+    LOG_INFO("Random float: {}", context_.random.Float(0.f, 1.f));
 }
 
 

@@ -2,15 +2,19 @@
 
 #include <string>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/System/Time.hpp>
 
 
 struct EngineConfig 
 {
-   std::string windowTitle; 
+    std::string windowTitle; 
 
-   sf::Vector2f windowSize; 
+    sf::Vector2f windowSize; 
 
-   bool disableSfmlLogs;
+    bool disableSfmlLogs;
+
+    sf::Time maximumDeltaTime; 
+
 
     EngineConfig();
 

@@ -13,9 +13,16 @@ Engine::Engine() :
         sf::err().rdbuf(nullptr);
     }
 
+    context_.save.Set<int>("score", 42);
+    int score = context_.save.Get<int>("score");
+    LOG_INFO("Score: {}", score);
+
+
     LOG_INFO("Window created");
     LOG_INFO("Random int: {}", context_.random.Int(1, 10));
     LOG_INFO("Random float: {}", context_.random.Float(0.f, 1.f));
+
+    
 }
 
 
@@ -37,7 +44,7 @@ void Engine::ProcessEvents()
 
 void Engine::Update()
 {
-
+    context_.time.Update();
 }
 
 void Engine::Render()
@@ -52,7 +59,7 @@ void Engine::Render()
 void Engine::EventWindowClose()
 {
     window_.close();
-    LOG_INFO("Window closed");
+    LOG_INFO("Window closed to {:.2f} seconds", context_.time.GetElapsedTime());
 
 }
 

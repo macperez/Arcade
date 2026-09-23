@@ -13,15 +13,11 @@ Engine::Engine() :
         sf::err().rdbuf(nullptr);
     }
 
-    context_.save.Set<int>("score", 42);
-    int score = context_.save.Get<int>("score");
-    LOG_INFO("Score: {}", score);
 
+    context_.audio.SetGlobalVolume(gConfig.globalVolume);
 
     LOG_INFO("Window created");
-    LOG_INFO("Random int: {}", context_.random.Int(1, 10));
-    LOG_INFO("Random float: {}", context_.random.Float(0.f, 1.f));
-
+    
     
 }
 

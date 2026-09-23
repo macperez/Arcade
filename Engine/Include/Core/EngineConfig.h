@@ -14,6 +14,7 @@ struct EngineConfig
     bool disableSfmlLogs;
 
     sf::Time maximumDeltaTime; 
+    float globalVolume; 
 
 
     EngineConfig();

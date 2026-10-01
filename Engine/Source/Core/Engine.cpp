@@ -7,7 +7,7 @@ Engine::Engine() :
 {
     window_.setIcon(sf::Image("Content/Textures/Icon.png"));
     window_.setMinimumSize(window_.getSize() / 2u);
-
+    window_.setKeyRepeatEnabled(false);
     if (gConfig.disableSfmlLogs)
     {
         sf::err().rdbuf(nullptr);
@@ -47,6 +47,8 @@ void Engine::Render()
 {
     window_.clear();
 
+    context_.renderer.BeginDrawing();
+    window_.draw(sf::Sprite(context_.renderer.FinishDrawing())); 
     window_.display();
 }
 
@@ -80,5 +82,21 @@ void Engine::EventWindowFocusLost()
 {
 
     LOG_INFO("Window focus lost");
+
+}
+
+void Engine::EventGamePadConnected(int id)
+{
+
+    LOG_INFO("Gamepad {} connected", id);
+
+}
+
+
+void Engine::EventGamePadDisconnected(int id)
+
+{
+
+    LOG_INFO("Gamepad {} disconnected", id);
 
 }

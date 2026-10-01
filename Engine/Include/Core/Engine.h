@@ -31,5 +31,6 @@ class Engine
         void EventWindowResized(sf::Vector2u size) ;
         void EventWindowFocusGained();
         void EventWindowFocusLost();
-        
+        void EventGamePadConnected(int id);
+        void EventGamePadDisconnected(int id);
 };

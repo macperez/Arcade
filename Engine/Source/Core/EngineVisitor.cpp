@@ -24,3 +24,15 @@ void EngineVisitor :: operator()(const sf::Event::FocusLost&)
 {
     engine.EventWindowFocusLost();
 }
+
+
+void EngineVisitor :: operator()(const sf::Event::JoystickConnected& joystick)
+{
+    engine.EventGamePadConnected(joystick.joystickId);
+}
+
+
+void EngineVisitor :: operator()(const sf::Event::JoystickDisconnected& joystick)
+{
+    engine.EventGamePadDisconnected(joystick.joystickId);
+}

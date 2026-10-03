@@ -3,7 +3,8 @@
 #include "Utils/Log.h"
 
 Engine::Engine() : 
-    window_(sf::VideoMode(sf::Vector2u(gConfig.windowSize)), gConfig.windowTitle)
+    window_(sf::VideoMode(sf::Vector2u(gConfig.windowSize)), gConfig.windowTitle), 
+    context_(window_)
 {
     window_.setIcon(sf::Image("Content/Textures/Icon.png"));
     window_.setMinimumSize(window_.getSize() / 2u);
@@ -99,4 +100,10 @@ void Engine::EventGamePadDisconnected(int id)
 
     LOG_INFO("Gamepad {} disconnected", id);
 
+}
+
+
+void Engine::EventWindowScreenshot() const
+{
+    context_.screenshot.Take();
 }

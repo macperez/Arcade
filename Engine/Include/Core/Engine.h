@@ -33,4 +33,5 @@ class Engine
         void EventWindowFocusLost();
         void EventGamePadConnected(int id);
         void EventGamePadDisconnected(int id);
+        void EventWindowScreenshot() const;
 };

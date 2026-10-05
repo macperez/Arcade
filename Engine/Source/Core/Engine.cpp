@@ -9,6 +9,7 @@ Engine::Engine() :
     window_.setIcon(sf::Image("Content/Textures/Icon.png"));
     window_.setMinimumSize(window_.getSize() / 2u);
     window_.setKeyRepeatEnabled(false);
+    window_.setMouseCursorVisible(false);
     if (gConfig.disableSfmlLogs)
     {
         sf::err().rdbuf(nullptr);
@@ -42,6 +43,7 @@ void Engine::ProcessEvents()
 void Engine::Update()
 {
     context_.time.Update();
+    context_.cursor.Update(context_.time.GetDeltaTime());
 }
 
 void Engine::Render()
@@ -50,6 +52,8 @@ void Engine::Render()
 
     context_.renderer.BeginDrawing();
     window_.draw(sf::Sprite(context_.renderer.FinishDrawing())); 
+    context_.cursor.Render();
+
     window_.display();
 }
 

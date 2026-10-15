@@ -32,6 +32,12 @@ bool Engine::IsRunning() const
 
 void Engine::ProcessEvents()
 {
+    
+    if (const auto nextScene = context_.scenes.FetchNextScene())
+    {
+        EventSceneChange(*nextScene);
+    }
+    
     while(const std::optional<sf::Event> event = window_.pollEvent())
     {
 
@@ -113,3 +119,22 @@ void Engine::EventWindowScreenshot() const
 {
     context_.screenshot.Take();
 }
+
+void Engine::EventSceneChange(const std::string& name)
+{   
+    // TODO: implement scene switching logic
+}
+
+
+void Engine::EventSceneRestart()
+{   
+    
+    context_.scenes.RestartCurrentScene();
+}
+
+void Engine::EventSceneMenuReturn()
+{   
+    
+    context_.scenes.ChangeScene("Menu");
+}
+

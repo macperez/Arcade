@@ -34,4 +34,8 @@ class Engine
         void EventGamePadConnected(int id);
         void EventGamePadDisconnected(int id);
         void EventWindowScreenshot() const;
+        void EventSceneChange(const std::string &name); 
+        void EventSceneRestart(); 
+        void EventSceneMenuReturn(); 
+        
 };

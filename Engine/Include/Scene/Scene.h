@@ -2,7 +2,7 @@
  
 #include <SFML/Window/Event.hpp>
 #include "Core/EngineContext.h"
-
+#include "Scene/SceneUtil.h"
 
 class Scene 
 {

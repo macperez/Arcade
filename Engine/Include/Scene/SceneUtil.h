@@ -67,7 +67,7 @@ inline float Distance(sf::Vector2f point1, sf::Vector2f point2)
 
 inline bool Contains(sf::Shape& shape, sf::Vector2f point)
 {
-    return shape.getGlobalBounds().contains(points);
+    return shape.getGlobalBounds().contains(point);
 
 }
 

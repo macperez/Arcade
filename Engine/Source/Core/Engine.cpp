@@ -4,7 +4,7 @@
 
 Engine::Engine() : 
     window_(sf::VideoMode(sf::Vector2u(gConfig.windowSize)), gConfig.windowTitle), 
-    context_(window_)
+    context_(window_), scenes_(SceneFactory::CreateScenes(context_)), currentScene_(nullptr)
 {
     window_.setIcon(sf::Image("Content/Textures/Icon.png"));
     window_.setMinimumSize(window_.getSize() / 2u);
@@ -43,6 +43,7 @@ void Engine::ProcessEvents()
 
         event ->visit( EngineVisitor{*this} );
         context_.gui.ProcessEvent(*event);
+        currentScene_ -> OnEvent(*event);
         
     }
 }
@@ -51,6 +52,7 @@ void Engine::Update()
 {
     context_.time.Update();
     context_.cursor.Update(context_.time.GetDeltaTime());
+    currentScene_ -> Update();
 }
 
 void Engine::Render()
@@ -58,6 +60,7 @@ void Engine::Render()
     window_.clear();
 
     context_.renderer.BeginDrawing();
+    currentScene_-> Render();
     window_.draw(sf::Sprite(context_.renderer.FinishDrawing())); 
     context_.gui.Render();
     context_.cursor.Render();
@@ -85,7 +88,7 @@ void Engine::EventWindowResized(sf::Vector2u size)
 
 void Engine::EventWindowFocusGained()
 {
-
+    currentScene_->OnPause(false);
     LOG_INFO("Window focus Gained");
 
 }
@@ -93,7 +96,7 @@ void Engine::EventWindowFocusGained()
 
 void Engine::EventWindowFocusLost()
 {
-
+    currentScene_->OnPause(true);
     LOG_INFO("Window focus lost");
 
 }
@@ -122,7 +125,14 @@ void Engine::EventWindowScreenshot() const
 
 void Engine::EventSceneChange(const std::string& name)
 {   
-    // TODO: implement scene switching logic
+    assert (scenes_.contains(name));
+    Scene *nextScene = scenes_.at(name).get();
+    if (currentScene_)
+        currentScene_->OnCleanup();
+    
+    context_.input.Clear();
+    currentScene_ = nextScene;
+    currentScene_->Start();
 }
 
 

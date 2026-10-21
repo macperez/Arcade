@@ -4,6 +4,7 @@
 #include "Core/EngineVisitor.h"
 #include "Core/EngineContext.h"
 
+#include "Scene/SceneFactory.h"
 
 class Engine 
 {
@@ -11,6 +12,9 @@ class Engine
 
         sf::RenderWindow window_; 
         EngineContext context_; 
+        SceneFactory::Scenes scenes_;
+        Scene* currentScene_; 
+        
 
     public: 
         Engine();

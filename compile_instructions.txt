@@ -4,3 +4,8 @@ rm -rf Build
 
 cmake -B Build -D CMAKE_BUILD_TYPE=Debug
 cmake --build Build --config Debug -j
+
+
+// después de cada cambio en libreías externas que hay que descargar CMakeLists
+
+cmake -S . -B Build

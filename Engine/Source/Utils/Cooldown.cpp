@@ -52,3 +52,8 @@ bool Cooldown::IsOver() const
 {
     return GetElapsedTime() > duration_;
 }
+
+void Cooldown::Reset()
+{
+    timer_.reset();
+}

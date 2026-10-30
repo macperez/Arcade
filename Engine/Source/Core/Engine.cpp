@@ -20,6 +20,8 @@ Engine::Engine() :
     context_.audio.SetGlobalVolume(gConfig.globalVolume);
 
     LOG_INFO("Window created");
+    context_.audio.SetGlobalVolume(gConfig.globalVolume); 
+    context_.scenes.ChangeScene("Bounce");
     
     
 }
@@ -46,7 +48,7 @@ void Engine::ProcessEvents()
         context_.gui.ProcessEvent(*event);
         if (!overlay_.IsVisible())
         {
-            //currentScene_ -> OnEvent(*event);    
+        currentScene_ -> OnEvent(*event);    
         }
             
     }
@@ -63,7 +65,7 @@ void Engine::Update()
     context_.cursor.Update(context_.time.GetDeltaTime());
     if (!overlay_.IsVisible())
     {
-        //currentScene_ -> Update();    
+        currentScene_ -> Update();    
     }
     
 }
@@ -73,7 +75,7 @@ void Engine::Render()
     window_.clear();
 
     context_.renderer.BeginDrawing();
-    //currentScene_-> Render();
+    currentScene_-> Render();
     window_.draw(sf::Sprite(context_.renderer.FinishDrawing())); 
     context_.gui.Render();
     context_.cursor.Render();
@@ -101,7 +103,7 @@ void Engine::EventWindowResized(sf::Vector2u size)
 
 void Engine::EventWindowFocusGained()
 {
-    //currentScene_->OnPause(false);
+    currentScene_->OnPause(false);
     LOG_INFO("Window focus Gained");
 
 }
@@ -109,7 +111,7 @@ void Engine::EventWindowFocusGained()
 
 void Engine::EventWindowFocusLost()
 {
-    //currentScene_->OnPause(overlay_.IsVisible());
+    currentScene_->OnPause(overlay_.IsVisible());
     LOG_INFO("Window focus lost");
 
 }
@@ -145,7 +147,7 @@ void Engine::EventSceneChange(const std::string& name)
     
     context_.input.Clear();
     currentScene_ = nextScene;
-    //currentScene_->Start();
+    currentScene_->Start();
 }
 
 
@@ -193,6 +195,6 @@ void Engine::EventOverlayPauseToggle()
     const bool cursorVisible = context_.cursor.IsVisible();
     context_.cursor.SetVisible(overlayVisible || cursorWasVisible_);
     cursorWasVisible_ = cursorVisible;
-    //currentScene_->OnPause(overlayVisible);
+    currentScene_->OnPause(overlayVisible);
     LOG_INFO(overlayVisible? "Game Paused ": "Game resumed");
 }

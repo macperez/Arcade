@@ -21,7 +21,7 @@ sf::SoundBuffer * ResourceManager :: FetchSound (const std::string & filename)
 {
     if (!sounds_.contains(filename))
     {
-        if (!sounds_[filename].loadFromFile("Content/Musics/" + filename))
+        if (!sounds_[filename].loadFromFile("Content/Sounds/" + filename))
         {
             LOG_ERROR("Failed to load sound: {} ", filename);
             return nullptr;
@@ -54,7 +54,7 @@ std::optional<sf::Music>  ResourceManager :: FetchMusic (const std::string & fil
 {
     sf::Music music; 
 
-    if (!music.openFromFile("Content/Fonts/" + filename))
+    if (!music.openFromFile("Content/Musics/" + filename))
     {
         LOG_ERROR("Failed to load music: {} ", filename);
         return std::nullopt;

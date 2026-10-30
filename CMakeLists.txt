@@ -16,11 +16,11 @@ FetchContent_Declare(enum URL https://github.com/Neargye/magic_enum/archive/refs
 FetchContent_MakeAvailable(sfml json logs tgui enum)
 
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS Engine/Source/*.cpp)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS Engine/Source/*.cpp  Games/Source/*.cpp)
 
 add_executable(ArcadeEngine ${SOURCES})
 
-target_include_directories(ArcadeEngine PRIVATE Engine/Include)
+target_include_directories(ArcadeEngine PRIVATE Engine/Include Games/Include)
 target_compile_features(ArcadeEngine PRIVATE cxx_std_20)
 target_compile_options(ArcadeEngine PRIVATE $<IF:$<CXX_COMPILER_ID:MSVC>, /W4, -Wall -Wextra>) 
 target_link_libraries(ArcadeEngine PRIVATE SFML::Graphics SFML::Audio nlohmann_json::nlohmann_json 

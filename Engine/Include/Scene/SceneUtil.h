@@ -16,29 +16,30 @@
 
 inline const sf::Font & GetDefaultFont()
 {
-    static const sf::Font font("Content/Fonts/Monserrat.ttf");
+    static const sf::Font font("Content/Fonts/Montserrat.ttf");
     return font; 
 }
 
 inline bool IsOutsideWindowLeft(const sf::Shape& shape)
 {
-    return shape.getPosition().x > gConfig.windowSize.x - shape.getGlobalBounds().size.x/2; 
+    return shape.getPosition().x < shape.getGlobalBounds().size.x / 2;
 }
 
 inline bool IsOutsideWindowRight(const sf::Shape& shape)
 {
-    return shape.getPosition().x < shape.getGlobalBounds().size.x/2; 
+    return shape.getPosition().x > gConfig.windowSize.x - shape.getGlobalBounds().size.x / 2;
 }
 
 inline bool IsOutsideWindowTop(const sf::Shape& shape)
 {
-    return shape.getPosition().y < shape.getGlobalBounds().size.y/2; 
+    return shape.getPosition().y < shape.getGlobalBounds().size.y / 2;
 }
 
-inline bool IsOutsideWindowDown(const sf::Shape& shape)
+inline bool IsOutsideWindowBottom(const sf::Shape& shape)
 {
-    return shape.getPosition().x > gConfig.windowSize.y - shape.getGlobalBounds().size.y/2; 
+    return shape.getPosition().y > gConfig.windowSize.y - shape.getGlobalBounds().size.y / 2;
 }
+
 
 
 inline bool IsOutsideWindow(sf::Vector2f point)

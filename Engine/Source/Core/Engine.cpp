@@ -33,6 +33,12 @@ bool Engine::IsRunning() const
 }
 
 
+bool Engine::HasFocus() const 
+{
+    return window_.hasFocus();
+}
+
+
 void Engine::ProcessEvents()
 {
     

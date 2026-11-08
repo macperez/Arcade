@@ -21,6 +21,8 @@ class Engine
     public: 
         Engine();
         bool IsRunning() const; 
+        bool HasFocus() const; 
+        
         void ProcessEvents();
         void Update(); 
         void Render();

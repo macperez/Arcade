@@ -1,3 +1,5 @@
+// Copyright (c) 2025 Adel Hales
+
 #include "Graphics/Effects/EffectInverted.h"
 
 #include <SFML/Graphics/Sprite.hpp>

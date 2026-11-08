@@ -1,9 +1,10 @@
- #include <utility>
- #include "Managers/RenderManager.h"
- #include "Core/EngineConfig.h"
- #include "Utils/Verify.h"
- #include "Graphics/Effects/EffectInverted.h"
- 
+#include <utility>
+#include "Managers/RenderManager.h"
+#include "Core/EngineConfig.h"
+#include "Utils/Verify.h"
+#include "Graphics/Effects/EffectMonitor.h"
+
+#include "Graphics/Effects/EffectBloom.h"
 
  RenderManager :: RenderManager() :  
    target_(sf::Vector2u(gConfig.windowSize)), 
@@ -19,7 +20,9 @@
    {
       VERIFY(effectsTarget_.resize(sf::Vector2u(gConfig.windowSize)));
 
-      effects_.emplace_back(std::make_unique<EffectInverted>());
+      //effects_.emplace_back(std::make_unique<EffectInverted>());
+      effects_.emplace_back(std::make_unique<EffectBloom>());
+      effects_.emplace_back(std::make_unique<EffectMonitor>());
 
    }
    

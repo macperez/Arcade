@@ -1,6 +1,9 @@
 #pragma once 
 
- #include <SFML/Graphics.hpp>
+#include <vector>
+#include <memory>
+#include <SFML/Graphics.hpp>
+#include "Graphics/Effect.h"
 
 
  class RenderManager 
@@ -9,6 +12,9 @@
         sf::RenderTexture target_; 
         sf::Texture backgroundTexture_; 
         sf::RectangleShape background_; 
+        std::vector<std::unique_ptr<Effect>> effects_;
+        sf::RenderTexture effectsTarget_; 
+        
 
     public:
         RenderManager();
